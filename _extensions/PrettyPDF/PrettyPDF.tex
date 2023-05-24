@@ -8,21 +8,22 @@
 \usepackage{titlesec}
 
 %% Set page size with a wider right margin
-\geometry{letterpaper, total={170mm,257mm}, left=20mm, top=20mm, bottom=20mm, right=50mm}
+\geometry{letterpaper, left=15mm, top=40mm, bottom=15mm, right=15mm}
 
 %% Let's define some colours
 \definecolor{light}{HTML}{D1DBE5}
-\definecolor{highlight}{HTML}{EDCCBF}
+\definecolor{highlight}{HTML}{447099}
 \definecolor{dark}{HTML}{213D4F}
 
-%% Let's add the border at the top
+%% Let's add a border at the top
 \AddToShipoutPicture{%
     % Image at the top
     \AtPageLowerLeft{%
-        \put(0,\LenToUnit{\dimexpr\paperheight-3cm}){%
-            \color{light}\includegraphics[width=\LenToUnit\paperwidth,height=3cm]{header.png}%
+        \put(0,\LenToUnit{\dimexpr\paperheight-2.7cm}){%
+            \color{light}\makebox[\paperwidth]{\includegraphics[width=\paperwidth,height=3cm,keepaspectratio]{_extensions/PrettyPDF/header.png}%
         }%
     }%
+}%
 }
 
 %% Style the page number
@@ -38,16 +39,48 @@
 \chapterfont{\color{dark}\fontsize{20}{16.8}\selectfont}
 \sectionfont{\color{dark}\fontsize{20}{16.8}\selectfont}
 \subsectionfont{\color{dark}\fontsize{14}{16.8}\selectfont}
-\titleformat{\subsection}
-  {\sffamily\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
-  
-% left align title
+
+%% Use some custom fonts
+\setsansfont{OpenSans}[
+    Path=_extensions/PrettyPDF/Open_Sans/static/,
+    Scale=0.9,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    ]
+
+\setmainfont{OpenSans}[
+    Path=_extensions/PrettyPDF/Open_Sans/static/,
+    Scale=1.1,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    ]
+    
+%% Set the font for headings
+\newfontfamily\headingfont{OpenSans}[
+    Path=_extensions/PrettyPDF/Open_Sans/static/,
+    Extension = .ttf,
+    UprightFont=*-Light,
+    BoldFont=*-Light,
+    ItalicFont=*-Light
+]
+
+\titleformat*{\section}{\LARGE\headingfont}
+\titleformat*{\subsection}{\Large\headingfont}
+\titleformat*{\subsubsection}{\large\headingfont}
+
+%% Left-align title and add font
+
 \makeatletter
 \renewcommand{\maketitle}{\bgroup\setlength{\parindent}{0pt}
 \begin{flushleft}
-  {\sffamily\huge\textbf{\MakeUppercase{\@title}}} \vspace{0.3cm} \newline
+  {\titlefont\sffamily\textbf{\Huge\headingfont{\@title}{\large\headingfont}}} \vspace{-0.7cm} \newline
   {\Large {\@subtitle}} \newline
   \@author
 \end{flushleft}\egroup
 }
 \makeatother
+
