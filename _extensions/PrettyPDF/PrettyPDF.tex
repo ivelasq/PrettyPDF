@@ -8,26 +8,21 @@
 \usepackage{titlesec}
 
 %% Set page size with a wider right margin
-\geometry{a4paper, total={170mm,257mm}, left=20mm, top=20mm, bottom=20mm, right=50mm}
+\geometry{letterpaper, total={170mm,257mm}, left=20mm, top=20mm, bottom=20mm, right=50mm}
 
 %% Let's define some colours
-\definecolor{light}{HTML}{E6E6FA}
-\definecolor{highlight}{HTML}{800080}
-\definecolor{dark}{HTML}{330033}
+\definecolor{light}{HTML}{D1DBE5}
+\definecolor{highlight}{HTML}{EDCCBF}
+\definecolor{dark}{HTML}{213D4F}
 
-%% Let's add the border on the right hand side 
-\AddToShipoutPicture{% 
-    \AtPageLowerLeft{% 
-        \put(\LenToUnit{\dimexpr\paperwidth-3cm},0){% 
-            \color{light}\rule{3cm}{\LenToUnit\paperheight}%
-          }%
-     }%
-     % logo
-    \AtPageLowerLeft{% start the bar at the bottom right of the page
-        \put(\LenToUnit{\dimexpr\paperwidth-2.25cm},27.2cm){% move it to the top right
-            \color{light}\includegraphics[width=1.5cm]{_extensions/nrennie/PrettyPDF/logo.png}
-          }%
-     }%
+%% Let's add the border at the top
+\AddToShipoutPicture{%
+    % Image at the top
+    \AtPageLowerLeft{%
+        \put(0,\LenToUnit{\dimexpr\paperheight-3cm}){%
+            \color{light}\includegraphics[width=\LenToUnit\paperwidth,height=3cm]{header.png}%
+        }%
+    }%
 }
 
 %% Style the page number
@@ -56,22 +51,3 @@
 \end{flushleft}\egroup
 }
 \makeatother
-
-%% Use some custom fonts
-\setsansfont{Ubuntu}[
-    Path=_extensions/nrennie/PrettyPDF/Ubuntu/,
-    Scale=0.9,
-    Extension = .ttf,
-    UprightFont=*-Regular,
-    BoldFont=*-Bold,
-    ItalicFont=*-Italic,
-    ]
-
-\setmainfont{Ubuntu}[
-    Path=_extensions/nrennie/PrettyPDF/Ubuntu/,
-    Scale=0.9,
-    Extension = .ttf,
-    UprightFont=*-Regular,
-    BoldFont=*-Bold,
-    ItalicFont=*-Italic,
-    ]
